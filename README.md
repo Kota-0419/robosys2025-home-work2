@@ -11,6 +11,7 @@ ROS 2を用いて、温度データの送受信と監視を行うパッケージ
 ## 実行環境
 * Ubuntu 22.04 LTS (Jammy Jellyfish)
 * ROS 2 Humble Hawksbill
+* Python 3.10
 
 ## インストール
 ```bash
