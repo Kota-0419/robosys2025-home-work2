@@ -8,21 +8,22 @@ from std_msgs.msg import Int16
 
 
 class Monitor(Node):
-
     def __init__(self):
         super().__init__('monitor')
-        self.subscription = self.create_subscription(
-            Int16,
-            'temperature',
-            self.listener_callback,
-            10)
-        self.subscription
+        self.declare_parameter('threshold', 30)
 
-    def listener_callback(self, msg):
-        if msg.data > 30:
+        self.sub = self.create_subscription(
+            Int16, 'temperature', self.cb, 10
+        )
+
+    def cb(self, msg):
+        threshold_param = self.get_parameter('threshold')
+        limit = threshold_param.get_parameter_value().integer_value
+
+        self.get_logger().info(f'Temperature: {msg.data} C')
+
+        if msg.data > limit:
             self.get_logger().warn(f'ALERT: Too Hot! ({msg.data} C)')
-        else:
-            self.get_logger().info(f'Temperature: {msg.data} C')
 
 
 def main(args=None):
