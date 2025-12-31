@@ -1,6 +1,6 @@
 # robosys2025-home-work2
 
-![test](https://github.com/Kota-0429/robosys2025-home-work2/actions/workflows/test.yml/badge.svg)
+![test](https://github.com/Kota-0419/robosys2025-home-work2/actions/workflows/test.yml/badge.svg)
 
 ROS 2を用いて、温度データの送受信と監視を行うパッケージです。
 
@@ -11,6 +11,15 @@ ROS 2を用いて、温度データの送受信と監視を行うパッケージ
 ## 実行環境
 * Ubuntu 22.04 LTS (Jammy Jellyfish)
 * ROS 2 Humble Hawksbill
+
+## インストール
+```bash
+cd ~/ros2_ws/src
+git clone [https://github.com/Kota-0419/robosys2025-home-work2.git](https://github.com/Kota-0419/robosys2025-home-work2.git)
+cd ~/ros2_ws
+colcon build --symlink-install
+source install/setup.bash
+```
 
 ## ノードとトピック
 ### sensor
@@ -28,10 +37,12 @@ ROS 2を用いて、温度データの送受信と監視を行うパッケージ
 **ターミナル1（受信側）**
 ```bash
 ros2 run mypkg monitor
+```
 
 **ターミナル2（送信側）**
 ```bash
 ros2 run mypkg sensor
+```
 
 ## ライセンス
 * このソフトウェアパッケージは、3条項BSDライセンスの下、再頒布および使用が許可されます。
