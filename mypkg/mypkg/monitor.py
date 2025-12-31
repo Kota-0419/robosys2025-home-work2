@@ -6,8 +6,9 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Int16
 
+
 class Monitor(Node):
-    
+
     def __init__(self):
         super().__init__('monitor')
         self.subscription = self.create_subscription(
