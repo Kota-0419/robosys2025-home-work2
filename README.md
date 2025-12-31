@@ -28,19 +28,40 @@ source install/setup.bash
 * パブリッシュするトピック: `temperature` (std_msgs/msg/Int16)
 
 ### monitor
-温度データを受信して端末に表示します。30度を超えると警告を出します。
+温度データを受信して端末に表示します。設定値（デフォルト30℃）を超えると警告を出します。
 * サブスクライブするトピック: `temperature` (std_msgs/msg/Int16)
 
 ## 使用法
 
-ターミナルを2つ開き、それぞれで以下のコマンドを実行します。
+### 1. 実行（一括起動）
+Launchファイルを使用することで、sensorノードとmonitorノードを同時に起動できます。
+※事前にビルドとsource（`source install/setup.bash`）が必要です。
 
-**ターミナル1（受信側）**
+```bash
+ros2 launch mypkg talk_listen.launch.py
+```
+実行後、Ctrl + C で終了します。
+
+### 2. パラメータの設定
+monitorノードは、警告を出す温度のしきい値を変更できます（デフォルトは30℃）。
+
+### 例：25℃で警告を出したい場合
+
+```bash
+ros2 run mypkg monitor --ros-args -p threshold:=25
+```
+
+### 3. 個別に実行する場合
+従来通り、ターミナルを2つ開いて実行することも可能です。
+
+### ターミナル1（受信側）
+
 ```bash
 ros2 run mypkg monitor
 ```
 
-**ターミナル2（送信側）**
+### ターミナル2（送信側）
+
 ```bash
 ros2 run mypkg sensor
 ```
